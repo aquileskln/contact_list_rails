@@ -1,0 +1,64 @@
+<!doctype html>
+<nav class="navbar navbar-inverse navbar-static-top">
+
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#expanded-menu" aria-expanded=" false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to 'Contact List', root_url, class: 'navbar-brand' %>
+    </div>
+
+  <!-- Conteudo exibido em telas maiores e que serao escondidos em telas menores -->
+  <div class="collapse navbar-collapse" id="expanded-menu">
+    <ul class="nav navbar-nav">
+      <% if !user_signed_in? %>
+        <li class="active">
+          <%= link_to 'Nova Conta', '#' %>
+        </li>
+      <% end %>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+
+      <% if !user_signed_in? %>
+        <li>
+          <%= link_to 'Entrar', entrar_path %>
+      </li>
+      <% else %>
+         <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                      bem vindo, <%= current_user.name %> <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                      <li class="dropdown-header">
+                        <%= link_to 'Minha Pagina', contacts_path %>
+                      </li>
+                      <li class="dropdown-header">
+                        <%= link_to 'Editar', edit_user_path(current_user) %>
+                      </li>
+                      <li role="separator" class="divider"></li>
+                      <li class="dropdown-header">
+                        <%= link_to 'Sair', sair_path, method: :delete %>
+                      </li>
+                    </ul>
+                  </div>
+      <% end %>
+
+    </ul>
+
+  </div>
+  <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+<script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+<script>
+  $(function () {
+    $('.dropdown-toggle').dropdown();
+  });
+</script>ß
+
+  </div>
+
+</nav>
